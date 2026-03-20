@@ -50,7 +50,10 @@ $tags = [
     "végétarien",
     "chocolat",
     "facile",
-    "maison"
+    "maison",
+    "test1",
+    "1",
+    "2"
 ];
 
 $featuredRecipes=array_slice($recipes,0,4);
@@ -206,6 +209,6 @@ $featuredRecipes=array_slice($recipes,0,4);
 
 <?php include 'includes/footer.php'; ?>
 
-<script src="assests/js/main.js"></script>
+<script src="assets\js\main.js"></script>
 </body>
 </html>
