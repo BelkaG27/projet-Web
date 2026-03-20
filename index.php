@@ -113,7 +113,7 @@ $featuredRecipes=array_slice($recipes,0,4);
                             <?php endforeach; ?>
                         </div>
 
-                        <a href="recipe.php?id=<? urlencode($recipe['id']); ?>" class="btn-secondary">
+                        <a href="recipe.php?id=<?= urlencode($recipe['id']); ?>" class="btn-secondary">
                             voir la recette
                         </a>
                     </div>
