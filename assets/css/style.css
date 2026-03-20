@@ -160,7 +160,7 @@ section{
 
 .btn-secondary{
     background: #fff3e6;
-    color: white;
+    color: #d97706;
     padding: 14px 24px;
     border-radius: 999px;
     font-weight: 600;
@@ -205,14 +205,14 @@ section{
     margin-bottom: 12px;
 }
 
-.recipe-tag{
+.recipe-tags{
     display: flex;
     flex-wrap: wrap;
     gap: 8px;
     margin-bottom: 16px;
 }
 
-.recipe-tag span{
+.recipe-tags span{
     background: #f3f3f3;
     padding: 6px 12px;
     border-radius: 999px;
@@ -358,6 +358,40 @@ section{
 .site-footer p{
     margin: 5px 0;
     color: #555;
+}
+
+/* Page rechercher */
+.small-hero{
+    margin-top: 40px;
+}
+
+.page-hero h1{
+    font-size: 42px;
+    margin-bottom: 10px;
+}
+
+.search-results{
+    min-height: 250px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.empty-state{
+    background: white;
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 30px 20px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+    width: 100%;
+}
+
+.recipe-ingredients-preview{
+    margin-bottom: 16px;
+    color: #555;
+    font-size: 15px;
 }
 
 /* Responsive */
