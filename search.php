@@ -49,10 +49,11 @@ $tag=trim($_GET['tag'] ?? '');
 $ingredientsInput= trim($_GET['ingredients'] ?? '');
 
 $isSearchedSubmitted=isset($_GET['title']) || isset($_GET['tag']) || isset($_GET['ingredients']);
+$hasSearchedCriteria=($title !== '' || $tag!=='' || $ingredientsInput!=='');
 
 $results=[];
 
-if($isSearchedSubmitted){
+if($isSearchedSubmitted && $hasSearchedCriteria){
     $searchedIngredients=[];
 
     if($ingredientsInput !==''){
@@ -158,6 +159,10 @@ if($isSearchedSubmitted){
         <?php if(!$isSearchedSubmitted): ?>
             <div class="empty-state">
                 <p>Utilisez le formulaire ci-dessus pour lancer une recherhe.</p>
+            </div>
+        <?php elseif(!$hasSearchedCriteria): ?>
+            <div class="empty-state">
+                <p>Veuillez saisir au moins un critère de recherche.</p>
             </div>
         <?php elseif(empty($results)): ?>
             <div class="empty-state">
