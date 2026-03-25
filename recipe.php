@@ -1,4 +1,6 @@
 <?php
+require_once 'classes/Template.php';
+
 $recipes = [
     [
         "id" => 1,
@@ -50,90 +52,78 @@ $recipes = [
     ]
 ];
 
-$recipeId= isset($_GET['id']) ? (int) $_GET['id'] : 0;
-$selectedRecipe=null;
+$recipeId = isset($_GET['id']) ? (int) $_GET['id'] : 0;
+$selectedRecipe = null;
 
-foreach($recipes as $recipe){
-    if($recipe['id'] === $recipeId){
-        $selectedRecipe=$recipe;
+foreach ($recipes as $recipe) {
+    if ($recipe['id'] === $recipeId) {
+        $selectedRecipe = $recipe;
         break;
     }
 }
+
+$pageTitle = $selectedRecipe
+    ? $selectedRecipe['title'] . ' - Mon Livre de Recettes'
+    : 'Recette introuvable - Mon Livre de Recettes';
+
+$template = new Template($pageTitle, 'recipes');
+
+ob_start();
 ?>
 
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>
-        <?php if($selectedRecipe): ?>
-            <?= htmlspecialchars($selectedRecipe['title']); ?> - Mon Livre de Recettes
-        <?php else: ?>
-            Recette introuvable - Mon Livre de Recette
-        <?php endif; ?>
-    </title>
-    <link rel="stylesheet" href="assets\css\style.css">
-</head>
-<body>
-    
-<?php include 'includes/header.php'; ?>
+<?php if (!$selectedRecipe): ?>
+    <section class="recipe-page">
+        <div class="empty-state">
+            <p>La recette demandée est introuvable.</p>
+        </div>
+    </section>
+<?php else: ?>
 
-<main>
+    <section class="recipe-page">
+        <div class="recipe-detail-card">
 
-    <?php if(!$selectedRecipe): ?>
-        <section class="recipe page">
-            <div class="empty-state">
-                <p>La recette demande est introuvable.</p>
+            <div class="recipe-detail-image">
+                <img
+                    src="<?= htmlspecialchars($selectedRecipe['photo']); ?>"
+                    alt="<?= htmlspecialchars($selectedRecipe['title']); ?>"
+                >
             </div>
-        </section>
-    <?php else: ?>
 
-        <section class="recipe-page">
-            <div class="recipe-detail-card">
+            <div class="recipe-detail-content">
+                <p class="recipe-detail-subtitle">Détail de la recette</p>
+                <h1><?= htmlspecialchars($selectedRecipe['title']); ?></h1>
 
-                <div class="recipe-detail-image">
-                    <img src="<?= htmlspecialchars($selectedRecipe['photo']); ?>" alt="<?= htmlspecialchars($selectedRecipe['title']); ?>">
+                <div class="recipe-tags detail-tags">
+                    <?php foreach ($selectedRecipe['tags'] as $tag): ?>
+                        <span><?= htmlspecialchars($tag); ?></span>
+                    <?php endforeach; ?>
                 </div>
 
-                <div class="recipe-detail-content">
-                    <p class="recipe-detail-subtitle">Détail de la recette</p>
-                    <h1><?= htmlspecialchars($selectedRecipe['title']); ?></h1>
-
-                    <div class="recipe-tags detail-tags">
-                        <?php foreach ($selectedRecipe['tags'] as $tag): ?>
-                            <span><?= htmlspecialchars($tag); ?></span>
+                <div class="recipe-detail-section">
+                    <h2>Ingrédients</h2>
+                    <ul class="ingredients-list">
+                        <?php foreach ($selectedRecipe['ingredients'] as $ingredient): ?>
+                            <li><?= htmlspecialchars($ingredient); ?></li>
                         <?php endforeach; ?>
-                    </div>
-
-                    <div class="recipe-detail-section">
-                        <h2>Ingrédients</h2>
-                        <ul class="ingredients-list">
-                            <?php foreach($selectedRecipe['ingredients'] as $ingredient): ?>
-                                <li><?= htmlspecialchars($ingredient); ?></li>
-                            <?php endforeach; ?>
-                        </ul>
-                    </div>
-
-                    <div class="recipe-detail-section">
-                        <h2>Préparation</h2>
-                        <p><?= htmlspecialchars($selectedRecipe['description']); ?></p>
-                    </div>
-
-                    <div class="recipe-detail-actions">
-                        <a href="recipes.php" class="btn-secondary">Voir toutes les recettes</a>
-                        <a href="search.php" class="btn-primary">Nouvelle recherche</a>
-                    </div>
+                    </ul>
                 </div>
 
+                <div class="recipe-detail-section">
+                    <h2>Préparation</h2>
+                    <p><?= htmlspecialchars($selectedRecipe['description']); ?></p>
+                </div>
+
+                <div class="recipe-detail-actions">
+                    <a href="recipes.php" class="btn-secondary">Voir toutes les recettes</a>
+                    <a href="search.php" class="btn-primary">Nouvelle recherche</a>
+                </div>
             </div>
-        </section>
-    <?php endif; ?>
 
-</main>
+        </div>
+    </section>
 
-<?php include 'includes/footer.php'; ?>
+<?php endif; ?>
 
-<script src="assets\js\main.js"></script>
-</body>
-</html>
+<?php
+$content = ob_get_clean();
+$template->render($content);
