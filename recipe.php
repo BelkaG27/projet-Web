@@ -7,7 +7,11 @@ $recipes = [
         "title" => "Tarte aux pommes",
         "photo" => "assets/images/recipe1.jpg",
         "tags" => ["dessert", "four"],
-        "ingredients" => ["pomme", "farine", "sucre", "beurre", "oeuf"],
+        "ingredients" => [
+            ["name" => "pomme", "image" => "assets/images/ingredients/pomme.jpg"],
+            ["name" => "farine", "image" => "assets/images/ingredients/farine.jpg"],
+            ["name" => "sucre", "image" => "assets/images/ingredients/sucre.jpg"]
+        ],
         "description" => "Épluchez les pommes, préparez la pâte, disposez les morceaux de pommes puis enfournez jusqu'à obtenir une tarte dorée et fondante."
     ],
     [
@@ -101,11 +105,17 @@ ob_start();
 
                 <div class="recipe-detail-section">
                     <h2>Ingrédients</h2>
-                    <ul class="ingredients-list">
+                    <div class="ingredients-grid">
                         <?php foreach ($selectedRecipe['ingredients'] as $ingredient): ?>
-                            <li><?= htmlspecialchars($ingredient); ?></li>
+                            <div class="ingredient-card">
+                                <img
+                                    src="<?= htmlspecialchars($ingredient['image']); ?>"
+                                    alt="<?= htmlspecialchars($ingredient['name']); ?>"
+                                >
+                                <span><?= htmlspecialchars($ingredient['name']); ?></span>
+                            </div>
                         <?php endforeach; ?>
-                    </ul>
+                    </div>
                 </div>
 
                 <div class="recipe-detail-section">

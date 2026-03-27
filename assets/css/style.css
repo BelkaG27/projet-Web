@@ -632,6 +632,39 @@ textarea:focus{
     box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.12) !important;
 }
 
+.ingredients-grid{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.ingredient-card{
+    background: white;
+    border-radius: 16px;
+    padding: 12px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    transition: 0.3s;
+}
+
+.ingredient-card:hover{
+    transform: translateY(-4px);
+}
+
+.ingredient-card img{
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    margin: 0 auto 8px;
+    border-radius: 50%;
+}
+
+.ingredient-card span{
+    font-size: 14px;
+    font-weight: 600;
+}
+
 /* Responsive */
 @media (max-width: 992px){
     .hero{
