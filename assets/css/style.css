@@ -669,6 +669,48 @@ textarea:focus{
     font-weight: 600;
 }
 
+.dropdown-list{
+width: 100%;
+margin-top: 8px;
+border-radius: 12px;
+border: 1px solid #ddd;
+padding: 6px;
+font-size: 14px;
+background: white;
+display: none;
+}
+
+.dropdown-list option{
+padding: 10px;
+}
+
+.selected-items{
+display: flex;
+flex-wrap: wrap;
+gap: 10px;
+margin-top: 15px;
+}
+
+.selected-badge{
+display: flex;
+align-items: center;
+gap: 8px;
+background: #fff3e6;
+color: #d97706;
+padding: 10px 14px;
+border-radius: 999px;
+font-weight: 600;
+}
+
+.selected-badge-remove{
+background: transparent;
+border: none;
+color: #d97706;
+font-size: 18px;
+cursor: pointer;
+line-height: 1;
+}
+
 /* Responsive */
 @media (max-width: 992px){
     .hero{
