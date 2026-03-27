@@ -1,61 +1,19 @@
 <?php
 require_once 'classes/Template.php';
+require_once 'classes/RecetteDB.php';
 
 $template = new Template('Accueil - Mon Livre de Recettes', 'index');
+$DB = new RecetteDB();
 
-$recipes = [
-    [
-        "id" => 1,
-        "title" => "Tarte aux pommes",
-        "photo" => "assets/images/recipe1.jpg",
-        "tags" => ["dessert", "four"]
-    ],
-    [
-        "id" => 2,
-        "title" => "Pizza maison",
-        "photo" => "assets/images/recipe2.jpg",
-        "tags" => ["rapide", "italien"]
-    ],
-    [
-        "id" => 3,
-        "title" => "Salade fraîche",
-        "photo" => "assets/images/recipe3.jpg",
-        "tags" => ["léger", "été"]
-    ],
-    [
-        "id" => 4,
-        "title" => "Gâteau au chocolat",
-        "photo" => "assets/images/recipe4.jpg",
-        "tags" => ["dessert", "gourmand"]
-    ],
-    [
-        "id" => 5,
-        "title" => "Omelette au fromage",
-        "photo" => "assets/images/recipe5.jpg",
-        "tags" => ["facile", "rapide"]
-    ],
-    [
-        "id" => 6,
-        "title" => "Soupe de légumes",
-        "photo" => "assets/images/recipe6.jpg",
-        "tags" => ["hiver", "léger"]
-    ]
-];
+$id_recette = $DB->getIdRecettesPageAcceuil();
 
-$tags = [
-    "dessert",
-    "four",
-    "rapide",
-    "hiver",
-    "fruit",
-    "léger",
-    "salade",
-    "été",
-    "végétarien",
-    "chocolat",
-    "facile",
-    "maison"
-];
+foreach($id_recette as $key=>$id){
+    $recipes[$key] = ["id"=>$id,"title"=>$DB->getNomRecette($id),"photo"=>'img/'.$DB->getImageRecette($id),"tags"=>$DB->getTagsRecette($id)];
+}
+
+
+
+$tags = $DB->getTagsPageAcceuil();
 
 $featuredRecipes = array_slice($recipes, 0, 4);
 
