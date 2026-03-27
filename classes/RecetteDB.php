@@ -104,4 +104,17 @@ class RecetteDB{
         }
         return $liste_ingredient=["nom"=>$liste_nom_ingredient,"image"=>$liste_image_ingredient];
     }
+
+    public function getIngredientsRecette_pageRecipe($id):array{
+        $statement = $this->pdo->prepare("SELECT ingredient.Nom_Ingredient,ingredient.Image_Ingredient FROM ingredient JOIN recette_ingredient ON recette_ingredient.ID_Ingredient = ingredient.ID_Ingredient where recette_ingredient.ID_Recette=:id");
+        $statement->bindValue(":id",$id);
+        $statement->execute();
+
+        $result = $statement->fetchAll();
+        $liste_ingredient = [];
+        foreach($result as $key=>$ingredient){
+            $liste_ingredient[$key]=["name"=>$ingredient['Nom_Ingredient'],"image"=>$ingredient['Image_Ingredient']];
+        }
+        return $liste_ingredient;
+    }
 }

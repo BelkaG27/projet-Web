@@ -1,52 +1,16 @@
 <?php
 require_once 'classes/Template.php';
+require_once 'classes/RecetteDB.php';
 
-$template = new Template('Toutes les recettes - Mon Livre de Recettes', 'recipes');
+$template = new Template('Accueil - Mon Livre de Recettes', 'index');
+$DB = new RecetteDB();
 
-$recipes = [
-    [
-        "id" => 1,
-        "title" => "Tarte aux pommes",
-        "photo" => "assets/images/recipe1.jpg",
-        "tags" => ["dessert", "four"],
-        "ingredients" => ["pomme", "farine", "sucre"]
-    ],
-    [
-        "id" => 2,
-        "title" => "Pizza maison",
-        "photo" => "assets/images/recipe2.jpg",
-        "tags" => ["rapide", "italien"],
-        "ingredients" => ["tomate", "fromage", "farine"]
-    ],
-    [
-        "id" => 3,
-        "title" => "Salade fraîche",
-        "photo" => "assets/images/recipe3.jpg",
-        "tags" => ["léger", "été"],
-        "ingredients" => ["salade", "tomate", "concombre"]
-    ],
-    [
-        "id" => 4,
-        "title" => "Gâteau au chocolat",
-        "photo" => "assets/images/recipe4.jpg",
-        "tags" => ["dessert", "gourmand"],
-        "ingredients" => ["chocolat", "farine", "sucre"]
-    ],
-    [
-        "id" => 5,
-        "title" => "Omelette au fromage",
-        "photo" => "assets/images/recipe5.jpg",
-        "tags" => ["facile", "rapide"],
-        "ingredients" => ["oeuf", "fromage", "beurre"]
-    ],
-    [
-        "id" => 6,
-        "title" => "Soupe de légumes",
-        "photo" => "assets/images/recipe6.jpg",
-        "tags" => ["hiver", "léger"],
-        "ingredients" => ["carotte", "pomme de terre", "oignon"]
-    ]
-];
+$id_recette = $DB->getIdRecettesPageAcceuil();
+
+foreach($id_recette as $key=>$id){
+    $recipes[$key] = ["id"=>$id,"title"=>$DB->getNomRecette($id),"photo"=>'img/'.$DB->getImageRecette($id),"tags"=>$DB->getTagsRecette($id),"ingredients"=>$DB->getIngredientsRecette($id)["nom"]];
+}
+
 
 ob_start();
 ?>

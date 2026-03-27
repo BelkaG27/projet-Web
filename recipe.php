@@ -1,60 +1,17 @@
 <?php
 require_once 'classes/Template.php';
+require_once 'classes/RecetteDB.php';
 
-$recipes = [
-    [
-        "id" => 1,
-        "title" => "Tarte aux pommes",
-        "photo" => "assets/images/recipe1.jpg",
-        "tags" => ["dessert", "four"],
-        "ingredients" => [
-            ["name" => "pomme", "image" => "assets/images/ingredients/pomme.jpg"],
-            ["name" => "farine", "image" => "assets/images/ingredients/farine.jpg"],
-            ["name" => "sucre", "image" => "assets/images/ingredients/sucre.jpg"]
-        ],
-        "description" => "Épluchez les pommes, préparez la pâte, disposez les morceaux de pommes puis enfournez jusqu'à obtenir une tarte dorée et fondante."
-    ],
-    [
-        "id" => 2,
-        "title" => "Pizza maison",
-        "photo" => "assets/images/recipe2.jpg",
-        "tags" => ["rapide", "italien"],
-        "ingredients" => ["tomate", "fromage", "farine", "huile d'olive"],
-        "description" => "Préparez la pâte, étalez-la, ajoutez la sauce tomate, le fromage et enfournez quelques minutes jusqu'à cuisson complète."
-    ],
-    [
-        "id" => 3,
-        "title" => "Salade fraîche",
-        "photo" => "assets/images/recipe3.jpg",
-        "tags" => ["léger", "été"],
-        "ingredients" => ["salade", "tomate", "concombre", "huile d'olive"],
-        "description" => "Coupez les légumes, mélangez-les dans un saladier et assaisonnez selon votre goût pour une salade légère et rafraîchissante."
-    ],
-    [
-        "id" => 4,
-        "title" => "Gâteau au chocolat",
-        "photo" => "assets/images/recipe4.jpg",
-        "tags" => ["dessert", "gourmand"],
-        "ingredients" => ["chocolat", "farine", "sucre", "beurre", "oeuf"],
-        "description" => "Faites fondre le chocolat avec le beurre, ajoutez les autres ingrédients puis enfournez pour obtenir un gâteau moelleux."
-    ],
-    [
-        "id" => 5,
-        "title" => "Omelette au fromage",
-        "photo" => "assets/images/recipe5.jpg",
-        "tags" => ["facile", "rapide"],
-        "ingredients" => ["oeuf", "fromage", "beurre", "sel"],
-        "description" => "Battez les oeufs, ajoutez le fromage puis faites cuire le tout dans une poêle beurrée jusqu'à ce que l'omelette soit bien prise."
-    ],
-    [
-        "id" => 6,
-        "title" => "Soupe de légumes",
-        "photo" => "assets/images/recipe6.jpg",
-        "tags" => ["hiver", "léger"],
-        "ingredients" => ["carotte", "pomme de terre", "oignon", "eau"],
-        "description" => "Faites cuire les légumes dans l'eau, mixez le tout puis servez chaud pour une soupe douce et réconfortante."
-    ]
-];
+$template = new Template('Accueil - Mon Livre de Recettes', 'index');
+$DB = new RecetteDB();
+
+$id_recette = $DB->getIdRecettesPageAcceuil();
+
+foreach($id_recette as $key=>$id){
+    $recipes[$key] = ["id"=>$id,"title"=>$DB->getNomRecette($id),"photo"=>'img/'.$DB->getImageRecette($id),"description"=>$DB->getDescriptionRecette($id),"tags"=>$DB->getTagsRecette($id),"ingredients"=>$DB->getIngredientsRecette_pageRecipe($id)];
+}
+
+
 
 $recipeId = isset($_GET['id']) ? (int) $_GET['id'] : 0;
 $selectedRecipe = null;
@@ -109,7 +66,7 @@ ob_start();
                         <?php foreach ($selectedRecipe['ingredients'] as $ingredient): ?>
                             <div class="ingredient-card">
                                 <img
-                                    src="<?= htmlspecialchars($ingredient['image']); ?>"
+                                    src="img/<?= htmlspecialchars($ingredient['image']); ?>"
                                     alt="<?= htmlspecialchars($ingredient['name']); ?>"
                                 >
                                 <span><?= htmlspecialchars($ingredient['name']); ?></span>

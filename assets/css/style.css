@@ -660,6 +660,10 @@ textarea:focus{
     border-radius: 50%;
 }
 
+.ingredient-card:hover img{
+    transform: scale(1.5);
+}
+
 .ingredient-card span{
     font-size: 14px;
     font-weight: 600;
