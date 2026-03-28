@@ -1,15 +1,12 @@
 <?php
 require_once '../includes/auth.php';
 require_once '../classes/Template.php';
+require_once '../classes/RecetteDB.php';
 
 $template = new Template('Modifier un ingrédient - Admin', '', '../');
+$DB = new recetteDB();
 
-$ingredients = [
-    ['id' => 1, 'name' => 'Tomate'],
-    ['id' => 2, 'name' => 'Fromage'],
-    ['id' => 3, 'name' => 'Farine'],
-    ['id' => 4, 'name' => 'Pomme']
-];
+$ingredients = $DB->getIngredients();
 
 ob_start();
 ?>
@@ -27,7 +24,11 @@ ob_start();
             <div class="admin-card">
                 <h3><?= htmlspecialchars($ingredient['name']); ?></h3>
                 <p>Modifier cet ingrédient.</p>
-                <a href="#" class="btn-secondary">Modifier</a>
+                <form action="ingredient_edit_form.php" method="POST">
+                    <input name="name" value="<?php echo''.$ingredient['name'].''?>" hidden>
+                    <button type="submit" class="btn-secondary">Modifier</button>   
+                </form>
+                
             </div>
         <?php endforeach; ?>
     </div>

@@ -3,29 +3,34 @@ require_once '../includes/auth.php';
 require_once '../classes/Template.php';
 require_once '../classes/RecetteDB.php';
 
-$template = new Template('Ajouter une recette - Admin', '', '../');
+$template = new Template('Modifier une recette - Admin', '', '../');
 $DB = new RecetteDB();
 
-$existingIngredients = $DB->getIngredients(); 
+$nameValue = $_GET['name'] ?? '';
 
+$existingIngredients = $DB->getIngredients(); 
 $existingTags = $DB->getTags();
 
 ob_start();
 ?>
 
+
+
+
 <section class="page-hero small-hero">
     <div class="section-title">
-        <h1>Ajouter une recette</h1>
-        <p>Créez une nouvelle recette</p>
+        <h1>Modifier une recette</h1>
+        <p>Modifier une recette existante</p>
     </div>
 </section>
 
 <section class="admin-form-section">
     <div class="search-card">
-        <form class="search-form admin-recipe-form" id="recipeForm" method="POST" action="ajouter_recette.php" novalidate enctype="multipart/form-data">
+        <form class="search-form admin-recipe-form" id="recipeForm" method="POST" action="modifier_recette.php" novalidate enctype="multipart/form-data">
             <div class="form-group">
                 <label for="title">Titre de la recette</label>
                 <input type="text" id="title" name="title" placeholder="Ex : Tarte aux pommes">
+                <input name="old_name" value="<?php echo''.$_POST['name'].''?>" hidden>
                 <small class="error-message"></small>
                 <?php if(isset($_SESSION['erreur']) && $_SESSION['erreur']!=""){
                     echo'<h1>'.$_SESSION['erreur'].'</h1>';
@@ -72,7 +77,7 @@ ob_start();
                 <div class="selected-items" id="selectedTags"></div>
             </div>
 
-            <button type="submit" class="btn-primary">Ajouter la recette</button>
+            <button type="submit" class="btn-primary">Modidifer la recette</button>
         </form>
     </div>
 </section>

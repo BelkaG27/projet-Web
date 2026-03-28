@@ -1,15 +1,14 @@
 <?php
 require_once '../includes/auth.php';
 require_once '../classes/Template.php';
+require_once '../classes/RecetteDB.php';
 
 $template = new Template('Supprimer un tag - Admin', '', '../');
 
-$tags = [
-    ['id' => 1, 'name' => 'dessert'],
-    ['id' => 2, 'name' => 'rapide'],
-    ['id' => 3, 'name' => 'léger'],
-    ['id' => 4, 'name' => 'hiver']
-];
+$DB = new RecetteDB();
+
+$tags = $DB->getTags();
+
 
 ob_start();
 ?>
@@ -27,7 +26,10 @@ ob_start();
             <div class="admin-card">
                 <h3><?= htmlspecialchars($tag['name']); ?></h3>
                 <p>Supprimer ce tag.</p>
-                <a href="#" class="btn-danger delete-confirm">Supprimer</a>
+                <form action="supprimer_tag.php" method="POST">
+                    <input name="name" value="<?php echo''.$tag['name'].''?>" hidden>
+                    <button type="submit" class="btn-danger delete-confirm">Supprimer</button>   
+                </form>
             </div>
         <?php endforeach; ?>
     </div>

@@ -8,6 +8,8 @@ $template = new Template(
     '../'
 );
 
+
+
 ob_start();
 ?>
 

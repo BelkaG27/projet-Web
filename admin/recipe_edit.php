@@ -1,15 +1,12 @@
 <?php
 require_once '../includes/auth.php';
 require_once '../classes/Template.php';
+require_once '../classes/RecetteDB.php';
 
 $template = new Template('Modifier une recette - Admin', '', '../');
+$DB = new RecetteDB();
 
-$recipes = [
-    ['id' => 1, 'title' => 'Tarte aux pommes'],
-    ['id' => 2, 'title' => 'Pizza maison'],
-    ['id' => 3, 'title' => 'Salade fraîche'],
-    ['id' => 4, 'title' => 'Gâteau au chocolat']
-];
+$recipes = $DB->getRecettes();
 
 ob_start();
 ?>
@@ -27,7 +24,10 @@ ob_start();
             <div class="admin-card">
                 <h3><?= htmlspecialchars($recipe['title']); ?></h3>
                 <p>Modifier cette recette.</p>
-                <a href="#" class="btn-secondary">Modifier</a>
+                <form action="recipe_edit_form.php" method="POST">
+                    <input name="name" value="<?php echo''.$recipe['title'].''?>" hidden>
+                    <button type="submit" class="btn-secondary">Modifier</button>   
+                </form>
             </div>
         <?php endforeach; ?>
     </div>
