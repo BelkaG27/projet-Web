@@ -7,7 +7,7 @@ class Template
     private string $basePath;
 
     public function __construct(
-        string $title = 'Mon Livre de Recettes',
+        string $title = 'Ratatouille',
         string $currentPage = '',
         string $basePath = ''
     ) {

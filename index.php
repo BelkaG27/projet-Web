@@ -2,7 +2,7 @@
 require_once 'classes/Template.php';
 require_once 'classes/RecetteDB.php';
 
-$template = new Template('Accueil - Mon Livre de Recettes', 'index');
+$template = new Template('Accueil - Ratatouille', 'index');
 $DB = new RecetteDB();
 
 $id_recette = $DB->getIdRecettesPageAcceuil();
@@ -32,7 +32,7 @@ ob_start();
     </div>
 
     <div class="hero-image">
-        <img src="assets/images/hero-dish.jpg" alt="Plat mis en avant">
+        <img src="img/index.jpg" alt="Plat mis en avant">
     </div>
 </section>
 

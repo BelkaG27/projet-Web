@@ -2,7 +2,7 @@
 require_once 'classes/Template.php';
 require_once 'classes/RecetteDB.php';
 
-$template = new Template('Recherche - Mon Livre de Recettes', 'search');
+$template = new Template('Recherche - Ratatouille', 'search');
 $DB = new RecetteDB();
 
 $id_recette = $DB->getIdRecettesPageAcceuil();

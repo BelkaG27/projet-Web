@@ -11,8 +11,8 @@
 <header class="site-header">
     <div class="header-container">
         <div class="logo-area">
-            <img src="<?= $basePath; ?>assets/images/logo.png" alt="Logo du site" class="logo">
-            <span class="site-name">Mon Livre de Recettes</span>
+            <img src="<?= $basePath; ?>img/logo.jpeg" style="width:120px;height:120px" alt="Logo du site" class="logo">
+            <span class="site-name">Ratatouille</span>
         </div>
 
         <nav class="main-nav">

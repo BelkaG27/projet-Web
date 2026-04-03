@@ -2,7 +2,7 @@
 require_once 'classes/Template.php';
 require_once 'classes/RecetteDB.php';
 
-$template = new Template('Accueil - Mon Livre de Recettes', 'index');
+$template = new Template('Accueil - Ratatouille', 'index');
 $DB = new RecetteDB();
 
 $id_recette = $DB->getIdRecettesPageAcceuil();
@@ -24,8 +24,8 @@ foreach ($recipes as $recipe) {
 }
 
 $pageTitle = $selectedRecipe
-    ? $selectedRecipe['title'] . ' - Mon Livre de Recettes'
-    : 'Recette introuvable - Mon Livre de Recettes';
+    ? $selectedRecipe['title'] . ' - Ratatouille'
+    : 'Recette introuvable - Ratatouille';
 
 $template = new Template($pageTitle, 'recipes');
 
@@ -76,7 +76,7 @@ ob_start();
                 </div>
 
                 <div class="recipe-detail-section">
-                    <h2>Préparation</h2>
+                    <h2>Description</h2>
                     <p><?= htmlspecialchars($selectedRecipe['description']); ?></p>
                 </div>
 

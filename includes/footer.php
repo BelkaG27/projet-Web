@@ -1,6 +1,6 @@
 <footer class="site-footer">
-    <p>Projet Web Recettes — Groupe X</p>
-    <p>Sources des images : à compléter</p>
+    <p>Projet Web Recettes — Ratatouille</p>
+    <p>Sources des images : <a href="https://fr.pinterest.com/">Pintrest.com</a></p>
     <p>&copy; 2026</p>
 </footer>
 

@@ -30,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-$template = new Template('Connexion administrateur - Mon Livre de Recettes', 'login');
+$template = new Template('Connexion administrateur - Ratatouille', 'login');
 
 ob_start();
 ?>
