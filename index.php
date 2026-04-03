@@ -32,7 +32,7 @@ ob_start();
     </div>
 
     <div class="hero-image">
-        <img src="img/index.jpg" alt="Plat mis en avant">
+        <img src="img/indexx.jpg" alt="Plat mis en avant">
     </div>
 </section>
 
