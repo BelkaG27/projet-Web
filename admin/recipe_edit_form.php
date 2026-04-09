@@ -62,7 +62,7 @@ ob_start();
             <!-- Champ titre -->
             <div class="form-group">
                 <label for="title">Titre de la recette</label>
-                <input type="text" id="title" name="title" placeholder="Ex : Tarte aux pommes">
+                <input type="text" id="title" name="title" value="<?= htmlspecialchars($nameValue); ?>" placeholder="Ex : Tarte aux pommes">
                 <!--
                     Champ caché : ancien titre transmis depuis recipe_edit.php via POST.
                     Utilisé par modifier_recette.php pour cibler le bon enregistrement en BDD.
