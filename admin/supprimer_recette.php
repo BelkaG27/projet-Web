@@ -31,8 +31,7 @@ if (!empty($_POST['name'])) {
 
 } else {
     // --- Nom vide : retour à la liste avec un message d'erreur ---
-    // ⚠️ La redirection pointe vers 'tag_delete.php' au lieu de 'recipe_delete.php'
     $_SESSION['erreur'] = 'Le nom est vide !';
-    header('Location: tag_delete.php');
+    header('Location: recipe_delete.php');
     exit();
 }

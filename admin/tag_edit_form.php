@@ -21,10 +21,10 @@ require_once '../includes/auth.php';
 require_once '../classes/Template.php';
 
 // ⚠️ Titre incorrect : devrait être 'Modifier un tag - Admin'
-$template = new Template('Modifier un ingrédient - Admin', '', '../');
+$template = new Template('Modifier un tag - Admin', '', '../');
 
 // Récupération du nom actuel du tag transmis en GET (non utilisé ici, $_POST est la source)
-$nameValue = $_GET['name'] ?? '';
+$nameValue = $_POST['name'] ?? '';
 
 // Début du tampon de sortie
 ob_start();

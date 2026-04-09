@@ -30,7 +30,7 @@ $template = new Template('Modifier une recette - Admin', '', '../');
 $DB = new RecetteDB();
 
 // Nom récupéré en GET (non utilisé ici, $_POST est la source réelle du nom)
-$nameValue = $_GET['name'] ?? '';
+$nameValue = $_POST['name'] ?? '';
 
 // Chargement de tous les ingrédients et tags existants pour le moteur de recherche JS
 $existingIngredients = $DB->getIngredients();
@@ -123,8 +123,8 @@ ob_start();
                 <div class="selected-items" id="selectedTags"></div>
             </div>
 
-            <!-- ⚠️ Faute de frappe : "Modidifer" → à corriger en "Modifier" -->
-            <button type="submit" class="btn-primary">Modidifer la recette</button>
+            
+            <button type="submit" class="btn-primary">Modifier la recette</button>
         </form>
     </div>
 </section>

@@ -13,7 +13,7 @@ require_once '../classes/Template.php';
 require_once '../classes/RecetteDB.php';
 
 // Initialisation du template avec basePath '../' car on est dans admin/
-$template = new Template('Modifier une recette - Admin', '', '../');
+$template = new Template('Modifier une recette - Admin', 'login', '../');
 
 // Connexion à la base de données et récupération de toutes les recettes
 $DB = new RecetteDB();

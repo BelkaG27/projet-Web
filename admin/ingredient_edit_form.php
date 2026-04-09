@@ -19,7 +19,7 @@ require_once '../classes/Template.php';
 $template = new Template('Modifier un ingrédient - Admin', '', '../');
 
 // Récupération du nom actuel de l'ingrédient passé en GET (non utilisé ici, $_POST est la source)
-$nameValue = $_GET['name'] ?? '';
+$nameValue = $_POST['name'] ?? '';
 
 // Début du tampon de sortie
 ob_start();

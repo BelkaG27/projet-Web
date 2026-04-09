@@ -3,7 +3,7 @@ require_once '../includes/auth.php';
 require_once '../classes/Template.php';
 
 $template = new Template(
-    'Administration - Mon Livre de Recettes',
+    'Administration - Ratatouille',
     'login',
     '../'
 );

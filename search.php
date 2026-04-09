@@ -52,7 +52,7 @@ if ($isSearchSubmitted && $hasSearchCriteria) {
     // Découpe la liste d'ingrédients saisie par l'utilisateur (séparateur : virgule)
     $searchedIngredients = [];
     if ($ingredientsInput !== '') {
-        $searchedIngredients = array_map('trim', explode(' ', strtolower($ingredientsInput)));
+        $searchedIngredients = array_map('trim', explode(',', strtolower($ingredientsInput)));
         $searchedIngredients = array_filter($searchedIngredients); // Supprime les valeurs vides
     }
 
