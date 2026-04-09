@@ -10,10 +10,6 @@
  *  - 'name'     : nouveau nom souhaité,
  *  - 'old_name' : ancien nom (caché) pour identifier l'enregistrement à mettre à jour.
  *
- * ⚠️  Le titre du Template indique "ingrédient" au lieu de "tag" — à corriger.
- * ⚠️  L'id du formulaire est "ingredientForm" au lieu de "tagForm" — à corriger
- *     pour que la validation JS du formulaire de tag s'applique correctement.
- * ⚠️  enctype="multipart/form-data" est inutile ici (pas de fichier à uploader).
  */
 
 // Vérification de l'authentification admin
@@ -41,12 +37,8 @@ ob_start();
 <!-- ===== FORMULAIRE DE MODIFICATION ===== -->
 <section class="admin-form-section">
     <div class="search-card">
-        <!--
-            ⚠️ id="ingredientForm" devrait être id="tagForm" pour que
-            setupSimpleForms() dans validation.js valide ce formulaire correctement.
-            ⚠️ enctype="multipart/form-data" inutile ici (pas d'upload de fichier).
-        -->
-        <form class="search-form admin-simple-form" id="ingredientForm"
+        
+        <form class="search-form admin-simple-form" id="tagForm"
               method="POST" action="modifier_tag.php"
               novalidate enctype="multipart/form-data">
 
